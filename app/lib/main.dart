@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_mobile/screens/categories_list.dart';
+import 'screens/categories_list.dart';
 import 'screens/home_screen.dart';
 
 
@@ -14,7 +14,7 @@ class NewsApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Colors.purple
+          primaryColor: Colors.red
       ),
       //home: HomeScreen(),
       routes: {
