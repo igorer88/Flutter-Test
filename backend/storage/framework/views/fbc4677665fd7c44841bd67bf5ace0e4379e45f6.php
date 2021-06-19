@@ -23,6 +23,7 @@
             </div>
             <div class="card-body">
                 <h5 class="card-text"><?php echo e($post->title); ?></h5>
+                <p class="card-text"><?php echo e($post->excerpt); ?></p>
             </div>
             <div class="card-footer">
                 <div class="form-group row">
@@ -60,4 +61,5 @@
 
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/posts/posts.blade.php ENDPATH**/ ?>
