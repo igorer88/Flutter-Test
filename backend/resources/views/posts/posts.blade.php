@@ -24,6 +24,7 @@
             </div>
             <div class="card-body">
                 <h5 class="card-text">{{$post->title}}</h5>
+                <p class="card-text">{{$post->excerpt}}</p>
             </div>
             <div class="card-footer">
                 <div class="form-group row">
