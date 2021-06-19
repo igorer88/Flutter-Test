@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('content');
+            $table->string('excerpt');
             $table->string('post_type');
 
             $table->bigInteger('author_id');
