@@ -48,13 +48,13 @@ class PostsMasterController extends Controller
         $post->author_id= Auth::user()->getAuthIdentifier();
         $post->title= $request->title;
         $post->content= $request->content;
-        $post->post_type= 'text';
+        $post->post_type='text';
         $post->category_id= $request->category_id;
         $post->save();
 
         if($request->has('post_tags')){
             foreach ($request->input('post_tags') as $tag) {
-                
+
                 DB::insert('insert into post_tag (post_id, tag_id) values (?, ?)', [$post->id, $tag]);
                 //DB::table('post_tag')->insert(['post_id' =>$post->id, 'tag_id' => $id]);
             }
@@ -91,7 +91,7 @@ class PostsMasterController extends Controller
      */
     public function show($post)
     {
-        
+
         return new PostResource(Post::findOrfail($post));
     }
 
@@ -105,8 +105,8 @@ class PostsMasterController extends Controller
     public function update(PostRequest $request, $post)
     {
         $post=Post::findOrfail($post);
-        $this->PostUserCheck($post,'update');
-        
+        $this->PostUserCheck($post, 'update');
+
         $post->update($request->all());
         return 'Post updated!';
     }
@@ -120,21 +120,21 @@ class PostsMasterController extends Controller
     public function destroy($post)
     {
         $post=Post::findOrfail($post);
-        $this->PostUserCheck($post,' delete');
-       
+        $this->PostUserCheck($post, 'delete');
+
         $comments=Comment::where('post_id',$post->id)->get() ;
-     
+
         foreach ($comments as $key => $value) {
             $value->delete();
         }
 
         $images=Image::where('post_id',$post->id)->get() ;
-     
+
         foreach ($images as $key => $value) {
             $value->delete();
         }
 
-        
+
         // $post->comments()->delete();
         // $post->images()->delete();
         $post->delete();
@@ -142,7 +142,7 @@ class PostsMasterController extends Controller
     }
 
     public function PostUserCheck($post,$action){
-        
+
         if(Auth::id() !== $post->author_id){
             throw new PostNotBelongsToUser($action);
 
